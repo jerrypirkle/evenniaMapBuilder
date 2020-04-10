@@ -21,9 +21,9 @@ parser.read(configF)
 
 # Set global variables
 # set data file
-parser.get('conf', 'data')
+data = pd.read_csv(parser.get('conf', 'data'))
 # set zone
-parser.get('conf', 'zone')
+zone = parser.get('conf', 'zone')
 dt = datetime.now()
 desctimestamp = dt.strftime("%m/%d/%y - %H:%M:%S")
 descriptions = {}
@@ -49,7 +49,7 @@ def main():
         if room != 'empty':
             descriptions[f"{zone} - {room}"] = ""
 
-    pp.pprint(descriptions)     
+    pp.pprint(descriptions)
     parser.set('desc', 'descriptions', str(descriptions))
     parser.set('desc', 'desctimestamp', str(desctimestamp))
     with open(configF, "w+") as configfile:
