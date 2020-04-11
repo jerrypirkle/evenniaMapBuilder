@@ -8,7 +8,6 @@ __version__ = "0.1.0"
 __license__ = "MIT"
 
 # Import modules
-import sys
 import pandas as pd
 from datetime import datetime
 import pprint
@@ -47,13 +46,10 @@ def main():
         room = data.iloc[location]
         x,y = location                            # assign location coordinates to variables
         if room != 'empty':
-            descriptions[f"{zone} - {room}"] = ""
+            parser.set('desc', f"{zone} - {room}", "")
 
-    pp.pprint(descriptions)
-    parser.set('desc', 'descriptions', str(descriptions))
-    parser.set('desc', 'desctimestamp', str(desctimestamp))
     with open(configF, "w+") as configfile:
-        parser.write(configfile)
+            parser.write(configfile)
 
 if __name__ == "__main__":
     """ This is executed when run from the command line """
